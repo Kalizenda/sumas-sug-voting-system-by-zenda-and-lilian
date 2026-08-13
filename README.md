@@ -36,11 +36,13 @@ To run the project locally, follow these steps:
 
 4. Configure environment variables:
 The server already has a .env file configured with MongoDB connection.
-For production, update the following in server/.env:
-- JWT_SECRET (already configured with secure key)
-- ADMIN_EMAIL (current: benandlilian@gmail.com)
-- ADMIN_PASSWORD (current: benandlilian08127179162Aa+)
-- MONGODB_URI (if using a different database)
+For production, create a server/.env file with the following variables:
+- JWT_SECRET (generate a secure random key)
+- ADMIN_EMAIL (your admin email)
+- ADMIN_PASSWORD (your admin password)
+- MONGODB_URI (your MongoDB connection string)
+- EMAIL_USER (your email for notifications)
+- EMAIL_PASS (your email password/app password)
 
 5. Start MongoDB:
 Make sure MongoDB is running on your system or update the connection string in server/.env
