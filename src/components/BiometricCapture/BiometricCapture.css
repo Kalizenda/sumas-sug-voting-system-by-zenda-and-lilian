@@ -1,0 +1,296 @@
+.biometric-capture {
+  background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
+  border-radius: 15px;
+  padding: 2rem;
+  color: #ffffff;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.biometric-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.biometric-header h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: #ff6f00;
+}
+
+.instructions {
+  color: #e0e0e0;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.error-message {
+  background: rgba(255, 0, 0, 0.1);
+  border: 1px solid #ff0000;
+  color: #ff0000;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.camera-container {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto 1.5rem;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 4/3;
+  min-height: 480px;
+  border: 2px solid #ff6f00;
+}
+
+.video-feed {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: scaleX(-1);
+  display: block;
+}
+
+.hidden-canvas {
+  display: none;
+}
+
+.loading-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #ffffff;
+}
+
+.loading-indicator .spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #ff6f00;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.face-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 250px;
+  pointer-events: none;
+}
+
+.face-frame {
+  width: 100%;
+  height: 100%;
+  border: 3px solid #00ff00;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.captured-images {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.captured-image-container {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid #ff6f00;
+}
+
+.captured-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.retake-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 0, 0, 0.8);
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: background 0.3s ease;
+}
+
+.retake-button:hover {
+  background: rgba(255, 0, 0, 1);
+}
+
+.image-placeholder {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+}
+
+.capture-controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.capture-button,
+.finish-button,
+.cancel-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.capture-button {
+  background: #ff6f00;
+  color: #ffffff;
+}
+
+.capture-button:hover:not(:disabled) {
+  background: #e65100;
+  transform: translateY(-2px);
+}
+
+.capture-button:disabled {
+  background: rgba(255, 111, 0, 0.3);
+  cursor: not-allowed;
+}
+
+.finish-button {
+  background: #00c853;
+  color: #ffffff;
+}
+
+.finish-button:hover:not(:disabled) {
+  background: #00a843;
+  transform: translateY(-2px);
+}
+
+.finish-button:disabled {
+  background: rgba(0, 200, 83, 0.3);
+  cursor: not-allowed;
+}
+
+.cancel-button {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cancel-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.capture-button .spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.biometric-info {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.biometric-info p {
+  margin: 0 0 0.5rem 0;
+  color: #ff6f00;
+}
+
+.biometric-info ul {
+  margin: 0;
+  padding-left: 1.5rem;
+  color: #e0e0e0;
+}
+
+.biometric-info li {
+  margin-bottom: 0.25rem;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .biometric-capture {
+    padding: 1rem;
+  }
+  
+  .biometric-header h3 {
+    font-size: 1.4rem;
+  }
+  
+  .camera-container {
+    max-width: 100%;
+  }
+  
+  .face-indicator {
+    width: 150px;
+    height: 200px;
+  }
+  
+  .capture-controls {
+    flex-direction: column;
+  }
+  
+  .capture-button,
+  .finish-button,
+  .cancel-button {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,110 @@
+.upcomingElections {
+    padding: 4rem 2rem;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(26, 95, 42, 0.05) 0%, rgba(0, 135, 81, 0.05) 50%, rgba(30, 58, 95, 0.05) 100%);
+    position: relative;
+}
+
+.upcomingElections::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(26, 95, 42, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(0, 135, 81, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.upcomingElections h2 {
+    color: #1a5f2a;
+    margin: 0rem auto 3rem;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 800;
+    text-shadow: 2px 2px 4px rgba(26, 95, 42, 0.1);
+    position: relative;
+    z-index: 1;
+}
+
+.upcomingElections .upcomingElectionsCardContainer {
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+}
+
+.upcomingElections .upcomingElectionsCardContainer .upcomingElectionCard {
+    padding: 2.5rem;
+    margin: 0.5rem;
+    width: 30%;
+    min-width: 320px;
+    background: linear-gradient(135deg, #1a5f2a 0%, #008751 50%, #1e3a5f 100%);
+    border-radius: 24px;
+    box-shadow: 0 15px 35px rgba(26, 95, 42, 0.2);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.upcomingElections .upcomingElectionsCardContainer .upcomingElectionCard:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 25px 50px rgba(26, 95, 42, 0.3);
+    background: linear-gradient(135deg, #008751 0%, #1a5f2a 50%, #4a90e2 100%);
+}
+
+.upcomingElections .upcomingElectionsCardContainer .upcomingElectionCard h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.upcomingElections .upcomingElectionsCardContainer .upcomingElectionCard p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.upcomingElections .upcomingElectionsCardContainer .upcomingElectionCard button {
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    color: #1a5f2a;
+    padding: 1rem 2.5rem;
+    border-radius: 30px;
+    font-weight: 700;
+    border: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    font-size: 1.1rem;
+}
+
+.upcomingElections .upcomingElectionsCardContainer .upcomingElectionCard button:hover {
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #1a5f2a;
+    transform: scale(1.08);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+}
+
+.upcomingElections .upcomingElectionsCardContainer .upcomingElectionCard button a {
+    text-decoration: none;
+    color: inherit;
+}
+
+@media (max-width: 1024px) {
+    .upcomingElections .upcomingElectionsCardContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .upcomingElections .upcomingElectionsCardContainer .upcomingElectionCard {
+        width: 95%;
+        max-width: 500px;
+    }
+}

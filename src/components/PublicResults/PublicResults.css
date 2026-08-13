@@ -1,0 +1,368 @@
+.public-results {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a237e 0%, #16213e 100%);
+    color: #ffffff;
+    padding: 2rem;
+}
+
+.results-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.results-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #00d4ff, #7b2ff7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.university-info {
+    text-align: center;
+    margin: 0.5rem 0;
+}
+
+.university-info p {
+    margin: 0.25rem 0;
+    color: #e0e0e0;
+}
+
+.published-by {
+    color: #ff6f00;
+    font-weight: 600;
+}
+
+.live-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 1rem auto;
+    background: rgba(0, 212, 255, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    width: fit-content;
+}
+
+.live-dot {
+    width: 10px;
+    height: 10px;
+    background: #00ff00;
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.2);
+    }
+}
+
+.last-update {
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+.results-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-card h3 {
+    font-size: 1rem;
+    color: #888;
+    margin-bottom: 0.5rem;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #00d4ff, #7b2ff7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.charts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.chart-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+}
+
+.chart-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #ffffff;
+}
+
+.chart-wrapper {
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-data {
+    color: #888;
+    font-size: 1.1rem;
+}
+
+.position-results {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.position-results h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: #ffffff;
+}
+
+.position-result-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.position-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.position-header h3 {
+    font-size: 1.3rem;
+    color: #ff6f00;
+    margin: 0;
+}
+
+.position-total {
+    color: #e0e0e0;
+    font-size: 0.9rem;
+}
+
+.candidates-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.candidate-result {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    position: relative;
+}
+
+.candidate-rank {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ff6f00;
+    min-width: 40px;
+    text-align: center;
+}
+
+.candidate-photo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #ff6f00;
+}
+
+.candidate-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.candidate-info {
+    flex-grow: 1;
+}
+
+.candidate-info h4 {
+    margin: 0 0 0.25rem 0;
+    color: #ffffff;
+    font-size: 1.1rem;
+}
+
+.candidate-info .department {
+    margin: 0 0 0.25rem 0;
+    color: #e0e0e0;
+    font-size: 0.85rem;
+}
+
+.candidate-info .slogan {
+    margin: 0;
+    color: #ff6f00;
+    font-style: italic;
+    font-size: 0.8rem;
+}
+
+.candidate-votes {
+    text-align: right;
+    min-width: 80px;
+}
+
+.vote-count {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #00ff00;
+}
+
+.vote-percentage {
+    font-size: 0.85rem;
+    color: #e0e0e0;
+}
+
+.vote-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.vote-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff6f00, #e65100);
+    border-radius: 2px;
+    transition: width 0.5s ease;
+}
+
+.winner-announcement {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: rgba(255, 111, 0, 0.1);
+    border: 1px solid #ff6f00;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.1rem;
+}
+
+.winner-label {
+    color: #ff6f00;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.winner-name {
+    color: #ffffff;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.winner-votes {
+    color: #e0e0e0;
+}
+
+.results-footer {
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem;
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.results-footer p {
+    margin: 0.25rem 0;
+}
+
+.public-results-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #ffffff;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top-color: #00d4ff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .results-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .charts-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .position-result-card {
+        padding: 1rem;
+    }
+    
+    .candidate-result {
+        flex-wrap: wrap;
+    }
+    
+    .chart-wrapper {
+        height: 300px;
+    }
+}

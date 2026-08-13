@@ -1,0 +1,102 @@
+
+.Nav{
+    padding: 1rem 2rem;
+    width: 100%;
+    font-size: 1rem;
+    border-radius: 0;
+    background: linear-gradient(135deg, #1a5f2a 0%, #008751 50%, #1e3a5f 100%);
+    color: white;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.Toggle{
+    margin: 0rem;
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    color: #1a5f2a;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.Toggle:hover{
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.AdminNav{
+    padding: 1rem 2rem;
+    width: 100%;
+    font-size: 1rem;
+    background: linear-gradient(135deg, #1a5f2a 0%, #008751 50%, #1e3a5f 100%);
+    color: white;
+    font-family: 'Inter', 'Segoe UI', 'Roboto', sans-serif;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.Heading{
+    padding: 0.5rem 1.5rem;
+    font-weight: 700;
+    background: transparent;
+    font-size: 1.5rem;
+    color: #ffd700;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.Heading:hover{
+    color: #ffed4e;
+    transform: scale(1.02);
+}
+
+.Nav-items-container{
+    margin: 0rem auto;
+    padding: 0rem 2rem;
+}
+
+.Nav-items{
+    margin: 0.5rem 0.8rem;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+    border-radius: 25px;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+}
+
+.Nav-items Button{
+    background-color: transparent;
+    padding: 0;
+    border-color: transparent;
+    color: white;
+    font-weight: 500;
+}
+
+.Nav-items Button:hover{
+    background-color: transparent;
+    border-color: transparent;
+    color: #ffd700;
+}
+
+.Nav-items:hover{
+    background: linear-gradient(135deg, #ffd700, #ffed4e);
+    color: #1a5f2a;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+    border-color: #ffd700;
+}
+
+.Nav-items:hover Button{
+    color: #1a5f2a;
+}
