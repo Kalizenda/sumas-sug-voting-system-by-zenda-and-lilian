@@ -57,9 +57,35 @@ The application will be available at:
 - Frontend: http://localhost:3000
 - Backend API: http://localhost:5002
 
-## Admin Credentials
-- **Email:** benandlilian@gmail.com
-- **Password:** benandlilian08127179162Aa+
+## Screenshots
+
+### Home Page
+![Home Page](screenshots/home-page.png)
+
+### Student Registration
+![Student Registration](screenshots/registration.png)
+
+### Student Login
+![Student Login](screenshots/login.png)
+
+### User Dashboard
+![User Dashboard](screenshots/user-dashboard.png)
+
+### Voting Interface
+![Voting Interface](screenshots/voting-interface.png)
+
+### Admin Dashboard
+![Admin Dashboard](screenshots/admin-dashboard.png)
+
+### Voter Analytics
+![Voter Analytics](screenshots/voter-analytics.png)
+
+### Election Results
+![Election Results](screenshots/election-results.png)
+
+### Team
+![Benneth Aja (Zenda)](screenshots/zenda.jpg)
+![Lilian Eze](screenshots/lilian.jpg)
 
 ## Project Structure
 - `/src` - React frontend application
