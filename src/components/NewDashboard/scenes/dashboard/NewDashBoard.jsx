@@ -92,14 +92,27 @@ const NewDashboard = () => {
     }
 
     return (
-        <div className="mainBox">
+        <div className="mainBox fade-in">
             <Box m="20px" height="84vh">
                 {/* HEADER */}
-                <Box display="flex" mb="10px" justifyContent="space-between" alignItems="center" >
+                <Box display="flex" mb="20px" justifyContent="space-between" alignItems="center" className="fade-in-down">
                     <Header title="ADMIN DASHBOARD" subtitle="Welcome Administrator" />
-
                     <Box>
-
+                        <IconButton
+                            sx={{
+                                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))',
+                                backdropFilter: 'blur(10px)',
+                                border: '1px solid rgba(255, 255, 255, 0.2)',
+                                color: '#ffd700',
+                                transition: 'all 0.3s ease',
+                                '&:hover': {
+                                    background: 'linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1))',
+                                    transform: 'scale(1.1)'
+                                }
+                            }}
+                        >
+                            <DownloadOutlinedIcon sx={{ fontSize: "26px" }} />
+                        </IconButton>
                     </Box>
                 </Box>
 
@@ -113,11 +126,21 @@ const NewDashboard = () => {
 
                     {/* ROW 1 */}
                     <Box
-                        gridColumn="span 3"
+                        gridColumn="span 4"
                         backgroundColor={colors.primary[400]}
                         display="flex"
                         alignItems="center"
                         justifyContent="center"
+                        borderRadius="16px"
+                        boxShadow="0 4px 20px rgba(0, 0, 0, 0.15)"
+                        className="fade-in-up stagger-1"
+                        sx={{
+                            transition: 'all 0.3s ease',
+                            '&:hover': {
+                                transform: 'translateY(-4px)',
+                                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.25)'
+                            }
+                        }}
                     >
                         <StatBox
                             title={data.voters}
@@ -130,11 +153,21 @@ const NewDashboard = () => {
                         />
                     </Box>
                     <Box
-                        gridColumn="span 3"
+                        gridColumn="span 4"
                         backgroundColor={colors.primary[400]}
                         display="flex"
                         alignItems="center"
                         justifyContent="center"
+                        borderRadius="16px"
+                        boxShadow="0 4px 20px rgba(0, 0, 0, 0.15)"
+                        className="fade-in-up stagger-2"
+                        sx={{
+                            transition: 'all 0.3s ease',
+                            '&:hover': {
+                                transform: 'translateY(-4px)',
+                                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.25)'
+                            }
+                        }}
                     >
                         <StatBox
                             title={data.candidates}
@@ -147,11 +180,21 @@ const NewDashboard = () => {
                         />
                     </Box>
                     <Box
-                        gridColumn="span 3"
+                        gridColumn="span 4"
                         backgroundColor={colors.primary[400]}
                         display="flex"
                         alignItems="center"
                         justifyContent="center"
+                        borderRadius="16px"
+                        boxShadow="0 4px 20px rgba(0, 0, 0, 0.15)"
+                        className="fade-in-up stagger-3"
+                        sx={{
+                            transition: 'all 0.3s ease',
+                            '&:hover': {
+                                transform: 'translateY(-4px)',
+                                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.25)'
+                            }
+                        }}
                     >
                         <StatBox
                             title={data.voted}
@@ -168,6 +211,16 @@ const NewDashboard = () => {
                         gridColumn="span 8"
                         gridRow="span 2"
                         backgroundColor={colors.primary[400]}
+                        borderRadius="16px"
+                        boxShadow="0 4px 20px rgba(0, 0, 0, 0.15)"
+                        className="fade-in-up stagger-4"
+                        sx={{
+                            transition: 'all 0.3s ease',
+                            '&:hover': {
+                                transform: 'translateY(-4px)',
+                                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.25)'
+                            }
+                        }}
                     >
                         <Box
                             mt="25px"
@@ -187,7 +240,18 @@ const NewDashboard = () => {
 
                             </Box>
                             <Box>
-                                <IconButton>
+                                <IconButton
+                                    sx={{
+                                        background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))',
+                                        backdropFilter: 'blur(10px)',
+                                        border: '1px solid rgba(255, 255, 255, 0.2)',
+                                        transition: 'all 0.3s ease',
+                                        '&:hover': {
+                                            background: 'linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1))',
+                                            transform: 'scale(1.1)'
+                                        }
+                                    }}
+                                >
                                     <DownloadOutlinedIcon
                                         sx={{ fontSize: "26px", color: colors.greenAccent[500] }}
                                     />
@@ -203,7 +267,17 @@ const NewDashboard = () => {
                         gridColumn="span 4"
                         gridRow="span 2"
                         backgroundColor={colors.primary[400]}
+                        borderRadius="16px"
+                        boxShadow="0 4px 20px rgba(0, 0, 0, 0.15)"
                         overflow="auto"
+                        className="fade-in-up stagger-5"
+                        sx={{
+                            transition: 'all 0.3s ease',
+                            '&:hover': {
+                                transform: 'translateY(-4px)',
+                                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.25)'
+                            }
+                        }}
                     >
                         <Box
                             display="flex"
@@ -225,6 +299,7 @@ const NewDashboard = () => {
                                 alignItems="center"
                                 borderBottom={`4px solid ${colors.primary[500]}`}
                                 p="15px"
+                                className="hover-lift"
                             >
                                 <Box>
                                     <Typography
@@ -256,6 +331,7 @@ const NewDashboard = () => {
                         gridRow="span 2"
                         backgroundColor={colors.primary[400]}
                         p="10px"
+                        className="fade-in-up stagger-6"
                     >
                         <Typography color={colors.grey[100]} variant="h4" fontWeight="600" sx={{ padding: "20px 20px 0 20px" }}>
                             Voters By Level
@@ -270,6 +346,7 @@ const NewDashboard = () => {
                         gridRow="span 2"
                         backgroundColor={colors.primary[400]}
                         p="10px"
+                        className="fade-in-up stagger-6"
                     >
                         <Typography color={colors.grey[100]} variant="h4" fontWeight="600" sx={{ padding: "20px 20px 0 20px" }}>
                             Voters DepartmentalWise
@@ -284,6 +361,7 @@ const NewDashboard = () => {
                         gridRow="span 2"
                         backgroundColor={colors.primary[400]}
                         p="10px"
+                        className="fade-in-up stagger-6"
                     >
                         <Typography color={colors.grey[100]} variant="h4" fontWeight="600" sx={{ padding: "20px 20px 0 20px" }}>
                             Upcoming Elections
@@ -297,6 +375,7 @@ const NewDashboard = () => {
                                     alignItems="center"
                                     borderBottom={`4px solid ${colors.primary[500]}`}
                                     p="15px"
+                                    className="hover-lift"
                                 >
                                     <Box>
                                         <Typography

@@ -25,10 +25,23 @@ const PublicResults = () => {
     const [candidates, setCandidates] = useState([]);
     const [groupedResults, setGroupedResults] = useState({});
     const [totalVotes, setTotalVotes] = useState(0);
-    const [voterTurnout, setVoterTurnout] = useState(0);
     const [loading, setLoading] = useState(true);
     const [lastUpdate, setLastUpdate] = useState(null);
     const [electionInfo, setElectionInfo] = useState(null);
+    const [bgTheme, setBgTheme] = useState(0);
+
+    const bgThemes = [
+        'linear-gradient(135deg, #1a237e 0%, #16213e 100%)',
+        'linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%)',
+        'linear-gradient(135deg, #134e5e 0%, #71b280 100%)',
+        'linear-gradient(135deg, #141e30 0%, #243b55 100%)',
+        'linear-gradient(135deg, #200122 0%, #6f0000 100%)',
+        'linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%)',
+    ];
+
+    const changeBackground = () => {
+        setBgTheme((prev) => (prev + 1) % bgThemes.length);
+    };
 
     useEffect(() => {
         // Connect to Socket.io
@@ -54,7 +67,6 @@ const PublicResults = () => {
 
         // Initial fetch
         fetchCandidates();
-        fetchElectionInfo();
 
         return () => {
             socket.disconnect();
@@ -71,22 +83,6 @@ const PublicResults = () => {
         } catch (error) {
             console.error('Error fetching candidates:', error);
             setLoading(false);
-        }
-    };
-
-    const fetchElectionInfo = async () => {
-        try {
-            const response = await axios.get(`${BASE_URL}/election/active`);
-            if (response.data.election) {
-                setElectionInfo(response.data.election);
-                // Calculate voter turnout
-                const statsResponse = await axios.get(`${BASE_URL}/election/${response.data.election._id}/statistics`);
-                if (statsResponse.data.statistics) {
-                    setVoterTurnout(statsResponse.data.statistics.voterTurnout);
-                }
-            }
-        } catch (error) {
-            console.error('Error fetching election info:', error);
         }
     };
 
@@ -139,19 +135,37 @@ const PublicResults = () => {
     }
 
     return (
-        <div className="public-results">
+        <div className="public-results" style={{ background: bgThemes[bgTheme] }}>
             <div className="results-header">
-                <h1>🗳️ Official SUG Election Results</h1>
-                <div className="university-info">
-                    <p>University of Medical and Applied Sciences, Igbo-Eno</p>
-                    <p className="published-by">Published by SUG Electoral Commission</p>
+                <div className="header-logo-section">
+                    <img 
+                        src="/school-logo.jpeg" 
+                        alt="SUMAS Logo" 
+                        className="school-logo"
+                    />
+                    <div className="header-text">
+                        <h1>🗳️ Official SUG Election Results</h1>
+                        <div className="university-info">
+                            <p>University of Medical and Applied Sciences, Igbo-Eno</p>
+                            <p className="published-by">Published by SUG Electoral Commission</p>
+                        </div>
+                    </div>
                 </div>
-                <div className="live-indicator">
-                    <span className="live-dot"></span>
-                    <span>LIVE</span>
-                </div>
-                <div className="last-update">
-                    Last updated: {lastUpdate}
+                <div className="header-controls">
+                    <div className="live-indicator">
+                        <span className="live-dot"></span>
+                        <span>LIVE</span>
+                    </div>
+                    <div className="last-update">
+                        Last updated: {lastUpdate}
+                    </div>
+                    <button 
+                        className="bg-switcher-btn" 
+                        onClick={changeBackground}
+                        title="Change Background Theme"
+                    >
+                        🎨 Change Theme
+                    </button>
                 </div>
             </div>
 
@@ -159,10 +173,6 @@ const PublicResults = () => {
                 <div className="stat-card">
                     <h3>Total Votes Cast</h3>
                     <div className="stat-number">{totalVotes}</div>
-                </div>
-                <div className="stat-card">
-                    <h3>Voter Turnout</h3>
-                    <div className="stat-number">{voterTurnout}%</div>
                 </div>
                 <div className="stat-card">
                     <h3>Positions Contested</h3>
@@ -178,39 +188,59 @@ const PublicResults = () => {
                 <div className="chart-card">
                     <h2>Vote Distribution by Position</h2>
                     <div className="chart-wrapper">
-                        {pieData.length > 0 ? (
-                            <Pie
-                                data={pieData}
-                                margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-                                innerRadius={0.5}
-                                padAngle={0.7}
-                                cornerRadius={3}
-                                activeOuterRadiusOffset={8}
+                        {barData.length > 0 ? (
+                            <ResponsiveBar
+                                data={barData}
+                                keys={["votes"]}
+                                indexBy="position"
+                                layout="horizontal"
+                                margin={{ top: 10, right: 50, bottom: 50, left: 150 }}
+                                padding={0.3}
+                                valueScale={{ type: "linear" }}
+                                indexScale={{ type: "band", round: true }}
+                                colors={{ scheme: "set3" }}
                                 borderColor={{
-                                    from: "#1e293b",
-                                    to: "#1e293b"
+                                    from: "color",
+                                    to: "color"
                                 }}
-                                arcLinkLabelsSkipAngle={10}
-                                arcLinkLabelsTextColor="#ffffff"
-                                arcLinkLabelsThickness={2}
-                                arcLinkLabelsColor={{ from: "#ffffff" }}
-                                enableArcLabels={false}
-                                arcLabelsRadiusOffset={0.4}
-                                arcLabelsSkipAngle={7}
-                                arcLabelsTextColor={{
-                                    from: "#ffffff",
-                                    to: "#ffffff"
+                                axisTop={null}
+                                axisRight={null}
+                                axisBottom={{
+                                    tickSize: 5,
+                                    tickPadding: 5,
+                                    tickRotation: 0,
+                                    legend: "Votes",
+                                    legendPosition: "middle",
+                                    legendOffset: 40,
+                                    tickTextColor: "#ffffff"
                                 }}
-                                colors={{ scheme: "nivo" }}
+                                axisLeft={{
+                                    tickSize: 5,
+                                    tickPadding: 5,
+                                    tickRotation: 0,
+                                    legend: "Position",
+                                    legendPosition: "middle",
+                                    legendOffset: -80,
+                                    tickTextColor: "#ffffff"
+                                }}
+                                enableLabel={true}
+                                labelSkipWidth={12}
+                                labelSkipHeight={12}
+                                labelTextColor="#ffffff"
+                                label={(datum) => `${datum.value} votes`}
                                 theme={{
                                     labels: {
                                         text: {
-                                            fill: "#ffffff"
+                                            fill: "#ffffff",
+                                            fontSize: 12,
+                                            fontWeight: 600
                                         }
                                     },
-                                    legends: {
-                                        text: {
-                                            fill: "#ffffff"
+                                    axis: {
+                                        ticks: {
+                                            text: {
+                                                fill: "#ffffff"
+                                            }
                                         }
                                     }
                                 }}
@@ -341,26 +371,27 @@ const PublicResults = () => {
                                         : 0;
                                     
                                     return (
-                                        <div key={candidate._id} className="candidate-result">
+                                        <div key={candidate._id} className="candidate-result" style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', padding: '1.5rem', background: 'rgba(255, 255, 255, 0.05)', borderRadius: '12px', position: 'relative', minHeight: '100px' }}>
                                             <div className="candidate-rank">
                                                 #{index + 1}
                                             </div>
                                             <div className="candidate-photo">
                                                 <img 
-                                                    src={candidate.photo || candidate.image || `https://via.placeholder.com/60?text=${candidate.fullName.charAt(0)}`}
+                                                    src={candidate.photo || candidate.image || `https://via.placeholder.com/70?text=${candidate.fullName.charAt(0)}`}
                                                     alt={candidate.fullName}
+                                                    style={{ width: '70px', height: '70px', borderRadius: '8px', objectFit: 'cover' }}
                                                 />
                                             </div>
-                                            <div className="candidate-info">
-                                                <h4>{candidate.fullName}</h4>
-                                                <p className="department">{candidate.department}</p>
+                                            <div className="candidate-info" style={{ flexGrow: 1 }}>
+                                                <h4 style={{ margin: '0 0 0.5rem 0', color: '#ffffff', fontSize: '1.2rem', fontWeight: '600' }}>{candidate.fullName}</h4>
+                                                <p className="department" style={{ margin: '0 0 0.5rem 0', color: '#e0e0e0', fontSize: '0.9rem' }}>{candidate.department}</p>
                                                 {candidate.campaignSlogan && (
-                                                    <p className="slogan">"{candidate.campaignSlogan}"</p>
+                                                    <p className="slogan" style={{ margin: 0, color: '#ff6f00', fontStyle: 'italic', fontSize: '0.85rem' }}>"{candidate.campaignSlogan}"</p>
                                                 )}
                                             </div>
-                                            <div className="candidate-votes">
-                                                <div className="vote-count">{candidate.votes || 0}</div>
-                                                <div className="vote-percentage">{percentage}%</div>
+                                            <div className="candidate-votes" style={{ textAlign: 'right', minWidth: '100px', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.25rem' }}>
+                                                <div className="vote-count" style={{ fontSize: '1.8rem', fontWeight: 'bold', color: '#00ff00', lineHeight: 1 }}>{candidate.votes || 0}</div>
+                                                <div className="vote-percentage" style={{ fontSize: '0.9rem', color: '#e0e0e0' }}>{percentage}%</div>
                                             </div>
                                             <div className="vote-bar">
                                                 <div 

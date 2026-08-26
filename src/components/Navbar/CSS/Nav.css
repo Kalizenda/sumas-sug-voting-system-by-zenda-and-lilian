@@ -53,6 +53,54 @@
     transition: all 0.3s ease;
 }
 
+.Heading img {
+    height: 20px !important;
+    width: 20px !important;
+    object-fit: contain;
+}
+
+.navbar-logo {
+    height: 16px !important;
+    width: 16px !important;
+    max-height: 16px !important;
+    max-width: 16px !important;
+    min-height: 16px !important;
+    min-width: 16px !important;
+    margin-right: 12px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 6px;
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* Override Bootstrap navbar-brand image styles */
+.navbar-brand img {
+    height: 40px !important;
+    width: 40px !important;
+    max-height: 40px !important;
+    max-width: 40px !important;
+}
+
+/* Force logo container to be moderate size */
+.logo-container {
+    width: 40px !important;
+    height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    flex-shrink: 0 !important;
+}
+
+/* Force all images in navbar to be moderate */
+.Nav img, .AdminNav img {
+    width: 40px !important;
+    height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
+}
+
 .Heading:hover{
     color: #ffed4e;
     transform: scale(1.02);

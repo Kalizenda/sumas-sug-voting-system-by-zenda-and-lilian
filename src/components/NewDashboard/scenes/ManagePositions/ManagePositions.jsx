@@ -3,6 +3,7 @@ import { Box, Typography, Button, Table, TableBody, TableCell, TableContainer, T
 import { Delete as DeleteIcon, Edit as EditIcon, Add as AddIcon } from '@mui/icons-material';
 import axios from 'axios';
 import { BASE_URL } from '../../../../helper';
+import ThemeSwitcher from '../../../ThemeSwitcher/ThemeSwitcher';
 
 const sugPositions = [
     "President",
@@ -125,15 +126,18 @@ const ManagePositions = () => {
   }
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+    <Box sx={{ p: 3 }} className="fade-in">
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }} className="fade-in-down">
         <Typography variant="h4">Manage Positions</Typography>
-        <Button variant="contained" startIcon={<AddIcon />} onClick={handleCreate}>
-          Create Position
-        </Button>
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <ThemeSwitcher position="inline" />
+          <Button variant="contained" startIcon={<AddIcon />} onClick={handleCreate}>
+            Create Position
+          </Button>
+        </Box>
       </Box>
 
-      <Box sx={{ mb: 3, p: 2, bgcolor: 'background.paper', borderRadius: 1 }}>
+      <Box sx={{ mb: 3, p: 2, bgcolor: 'background.paper', borderRadius: 1 }} className="fade-in-up stagger-1">
         <Typography variant="h6" gutterBottom>Quick Add SUG Positions</Typography>
         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
           {sugPositions.map(position => (
@@ -143,6 +147,7 @@ const ManagePositions = () => {
               size="small"
               onClick={() => handleQuickAdd(position)}
               disabled={!positions.find(p => p.title === position)}
+              className="hover-scale"
             >
               {positions.find(p => p.title === position) ? '✓ ' : '+ '}{position}
             </Button>
@@ -150,7 +155,7 @@ const ManagePositions = () => {
         </Box>
       </Box>
 
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className="fade-in-up stagger-2">
         <Table>
           <TableHead>
             <TableRow>
@@ -164,7 +169,7 @@ const ManagePositions = () => {
           </TableHead>
           <TableBody>
             {positions.map((position) => (
-              <TableRow key={position._id}>
+              <TableRow key={position._id} className="hover-lift">
                 <TableCell>{position.title}</TableCell>
                 <TableCell>{position.description}</TableCell>
                 <TableCell>

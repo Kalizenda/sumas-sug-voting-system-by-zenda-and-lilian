@@ -1,51 +1,60 @@
 .biometric-capture {
-  background: linear-gradient(135deg, #1a237e 0%, #0d47a1 100%);
-  border-radius: 15px;
-  padding: 2rem;
-  color: #ffffff;
-  max-width: 800px;
-  margin: 0 auto;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-8);
+  color: var(--color-text-inverse);
+  max-width: 700px;
+  margin: var(--spacing-8) auto;
+  box-shadow: var(--shadow-xl);
 }
 
 .biometric-header {
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-6);
 }
 
 .biometric-header h3 {
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-  color: #ff6f00;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-3);
+  background: linear-gradient(135deg, var(--color-primary-400), var(--color-secondary-400));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .instructions {
-  color: #e0e0e0;
-  font-size: 1rem;
+  color: var(--color-gray-200);
+  font-size: var(--font-size-lg);
   margin: 0;
+  line-height: var(--line-height-relaxed);
 }
 
 .error-message {
-  background: rgba(255, 0, 0, 0.1);
-  border: 1px solid #ff0000;
-  color: #ff0000;
-  padding: 1rem;
-  border-radius: 8px;
-  margin-bottom: 1rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--color-error-500);
+  color: var(--color-error-400);
+  padding: var(--spacing-4);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-4);
   text-align: center;
+  font-weight: var(--font-weight-medium);
 }
 
 .camera-container {
   position: relative;
   width: 100%;
-  max-width: 640px;
-  margin: 0 auto 1.5rem;
-  border-radius: 10px;
+  max-width: 240px;
+  margin: var(--spacing-6) auto var(--spacing-4);
+  border-radius: var(--radius-xl);
   overflow: hidden;
   background: #000;
   aspect-ratio: 4/3;
-  min-height: 480px;
-  border: 2px solid #ff6f00;
+  min-height: 180px;
+  border: 3px solid var(--color-primary-500);
+  box-shadow: var(--shadow-lg);
 }
 
 .video-feed {
@@ -70,13 +79,13 @@
 }
 
 .loading-indicator .spinner {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   border: 3px solid rgba(255, 255, 255, 0.1);
-  border-top-color: #ff6f00;
+  border-top-color: var(--color-primary-500);
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-4);
 }
 
 @keyframes spin {
@@ -90,17 +99,17 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 200px;
-  height: 250px;
+  width: 100px;
+  height: 120px;
   pointer-events: none;
 }
 
 .face-frame {
   width: 100%;
   height: 100%;
-  border: 3px solid #00ff00;
-  border-radius: 50%;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+  border: 3px solid var(--color-success-500);
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
   animation: pulse 2s infinite;
 }
 
@@ -115,19 +124,20 @@
 
 .captured-images {
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing-3);
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-6);
   flex-wrap: wrap;
 }
 
 .captured-image-container {
   position: relative;
-  width: 100px;
-  height: 100px;
-  border-radius: 8px;
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  border: 2px solid #ff6f00;
+  border: 2px solid var(--color-primary-500);
+  box-shadow: var(--shadow-md);
 }
 
 .captured-image-container img {
@@ -138,94 +148,101 @@
 
 .retake-button {
   position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+  top: var(--spacing-1);
+  right: var(--spacing-1);
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
   border: none;
-  background: rgba(255, 0, 0, 0.8);
-  color: #ffffff;
+  background: rgba(239, 68, 68, 0.9);
+  color: var(--color-text-inverse);
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 14px;
-  transition: background 0.3s ease;
+  font-size: var(--font-size-sm);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
 }
 
 .retake-button:hover {
-  background: rgba(255, 0, 0, 1);
+  background: var(--color-error-500);
+  transform: scale(1.1);
 }
 
 .image-placeholder {
-  width: 100px;
-  height: 100px;
-  border-radius: 8px;
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-lg);
   border: 2px dashed rgba(255, 255, 255, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   color: rgba(255, 255, 255, 0.5);
-  font-size: 0.8rem;
+  font-size: var(--font-size-sm);
 }
 
 .capture-controls {
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing-4);
   justify-content: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: var(--spacing-8);
   flex-wrap: wrap;
 }
 
 .capture-button,
 .finish-button,
 .cancel-button {
-  padding: 0.75rem 1.5rem;
+  padding: var(--spacing-4) var(--spacing-6);
   border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--spacing-2);
+  box-shadow: var(--shadow-md);
 }
 
 .capture-button {
-  background: #ff6f00;
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
+  color: var(--color-text-inverse);
 }
 
 .capture-button:hover:not(:disabled) {
-  background: #e65100;
+  background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-700));
   transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
 }
 
 .capture-button:disabled {
-  background: rgba(255, 111, 0, 0.3);
+  background: rgba(14, 165, 233, 0.3);
   cursor: not-allowed;
+  transform: none;
 }
 
 .finish-button {
-  background: #00c853;
-  color: #ffffff;
+  background: linear-gradient(135deg, var(--color-success-500), var(--color-success-600));
+  color: var(--color-text-inverse);
 }
 
 .finish-button:hover:not(:disabled) {
-  background: #00a843;
+  background: linear-gradient(135deg, var(--color-success-600), var(--color-success-700));
   transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
 }
 
 .finish-button:disabled {
-  background: rgba(0, 200, 83, 0.3);
+  background: rgba(34, 197, 94, 0.3);
   cursor: not-allowed;
+  transform: none;
 }
 
 .cancel-button {
   background: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+  color: var(--color-text-inverse);
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
@@ -244,34 +261,38 @@
 
 .biometric-info {
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 8px;
-  padding: 1rem;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-6);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .biometric-info p {
-  margin: 0 0 0.5rem 0;
-  color: #ff6f00;
+  margin: 0 0 var(--spacing-3) 0;
+  color: var(--color-primary-300);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-base);
 }
 
 .biometric-info ul {
   margin: 0;
-  padding-left: 1.5rem;
-  color: #e0e0e0;
+  padding-left: var(--spacing-6);
+  color: var(--color-gray-200);
 }
 
 .biometric-info li {
-  margin-bottom: 0.25rem;
-  font-size: 0.9rem;
+  margin-bottom: var(--spacing-2);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
 }
 
 @media (max-width: 768px) {
   .biometric-capture {
-    padding: 1rem;
+    padding: var(--spacing-6);
+    margin: var(--spacing-4) auto;
   }
   
   .biometric-header h3 {
-    font-size: 1.4rem;
+    font-size: var(--font-size-2xl);
   }
   
   .camera-container {
@@ -285,6 +306,7 @@
   
   .capture-controls {
     flex-direction: column;
+    gap: var(--spacing-3);
   }
   
   .capture-button,

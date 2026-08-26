@@ -72,7 +72,8 @@ const Team = () => {
                     <p>Lilian is an aspiring Full-Stack Developer and Software Engineer with practical knowledge of HTML, CSS, JavaScript, Node.js, Express.js, and MongoDB.</p>
                     <p>She is passionate about creating functional web applications, learning modern software development techniques, and using technology to solve real-world problems.</p>
                     <p>Skills: HTML | CSS | JavaScript | Node.js | Express.js | MongoDB | Git | GitHub | REST APIs.</p>
-                    <SocialIcon className='SocialIcon' style={{ height: "30px", width: "30px" }} href="https://www.tiktok.com/@lillianeze2?_r=1&_t=ZS-98nGNWuyItE" target='_blank' url="www.tiktok.com" />
+                    <SocialIcon className='SocialIcon' style={{ height: "30px", width: "30px" }} href="https://www.tiktok.com/@coder207" target='_blank' url="www.tiktok.com" />
+                    <SocialIcon className='SocialIcon' style={{ height: "30px", width: "30px" }} href="https://github.com/zendi-creator" target='_blank' url="www.github.com" />
                 </div>
 
                 <div className='Team-Content-Card' ref={revealRefRight}>

@@ -62,7 +62,7 @@ const About = () => {
     }, []);
     return (
         <div className="AboutUs">
-            <h2 ref={revealRefTop}>Welcome to Nigerian Student Union Electronic Voting System</h2>
+            <h2 ref={revealRefTop} className="scrolling-welcome-text">Welcome to Nigerian Student Union Electronic Voting System</h2>
             <div className='About-Content'>
                 <div className='textAbout' ref={revealRefLeft}>
                     <p>We are committed to revolutionizing the Student Union Government elections across Nigerian universities through innovative biometric-enabled electronic voting solutions. Our platform is designed to empower students by providing a secure, accessible, and transparent voting experience.</p>

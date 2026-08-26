@@ -21,6 +21,8 @@ import { BASE_URL } from '../../../../helper';
 import Cookies from 'js-cookie';
 import io from 'socket.io-client';
 import { Card, CardContent, CardMedia, Typography, Chip, Grid, Alert } from '@mui/material';
+import ThemeSwitcher from '../../../ThemeSwitcher/ThemeSwitcher';
+import { useTheme } from '../../../../context/ThemeContext';
 
 const style = {
     position: 'absolute',
@@ -69,6 +71,7 @@ const sugPositions = [
 ];
 
 export default function CustomizedTables() {
+    const { currentTheme } = useTheme();
     const revealRefBottom = useRef(null);
     const revealRefLeft = useRef(null);
     const revealRefTop = useRef(null);
@@ -233,8 +236,9 @@ export default function CustomizedTables() {
     }
 
     return (
-        <div className="vote-container">
+        <div className="vote-container" style={{ background: currentTheme.background, minHeight: '100vh', transition: 'background 0.5s ease' }}>
             <UserNavbar />
+            <ThemeSwitcher position="top-right" />
             
             <div className="vote-header">
                 <h1>SUG Election Voting</h1>
@@ -271,13 +275,21 @@ export default function CustomizedTables() {
                             <Grid container spacing={3} className="candidates-grid">
                                 {positionCandidates.map((candidate) => (
                                     <Grid item xs={12} sm={6} md={4} key={candidate._id}>
-                                        <Card className="candidate-card">
+                                        <Card 
+                                            className="candidate-card" 
+                                            sx={{ 
+                                                borderRadius: 0,
+                                                backgroundColor: 'rgba(255, 215, 0, 0.15)',
+                                                border: '2px solid rgba(255, 215, 0, 0.4)'
+                                            }}
+                                        >
                                             <CardMedia
                                                 component="img"
-                                                height="200"
+                                                height="400"
                                                 image={candidate.photo || candidate.image || `https://via.placeholder.com/200?text=${candidate.fullName}`}
                                                 alt={candidate.fullName}
                                                 className="candidate-photo"
+                                                sx={{ borderRadius: 0 }}
                                             />
                                             <CardContent>
                                                 <Typography gutterBottom variant="h5" component="div" className="candidate-name">

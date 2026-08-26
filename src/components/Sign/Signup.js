@@ -10,6 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { BASE_URL } from "../../helper";
 import { useNavigate } from 'react-router-dom';
 import BiometricCapture from "../BiometricCapture/BiometricCapture";
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 
 const universityDepartments = [
     "Department of Computer Science",
@@ -151,8 +152,13 @@ export default function Signup() {
                     <img src={signupimage} alt="University Student Registration" />
                 </div>
                 <div className="signup-form">
-                    <h2>Student Registration</h2>
-                    <p>University of Medical and Applied Sciences, Igbo-Eno</p>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+                        <div>
+                            <h2>Student Registration</h2>
+                            <p>University of Medical and Applied Sciences, Igbo-Eno</p>
+                        </div>
+                        <ThemeSwitcher position="inline" />
+                    </div>
                     
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">

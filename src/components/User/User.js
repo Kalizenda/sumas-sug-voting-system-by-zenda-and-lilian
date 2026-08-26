@@ -8,9 +8,12 @@ import UpcomingElections from './Components/UpcomingElections';
 import ScrollReveal from "scrollreveal";
 import { BASE_URL } from '../../helper';
 import Cookies from 'js-cookie';
+import ThemeSwitcher from '../ThemeSwitcher/ThemeSwitcher';
+import { useTheme } from '../../context/ThemeContext';
 
 const User = () =>{
   const location = useLocation();
+  const { currentTheme } = useTheme();
   const { voterst } = location.state || {};
   // console.log(voterst);
   const setCookie = () => {
@@ -96,8 +99,9 @@ const User = () =>{
     }, []); 
   
     return(
-        <div className="User">
+        <div className="User" style={{ background: currentTheme.background, minHeight: '100vh', transition: 'background 0.5s ease' }}>
             <UserNavbar/>
+            <ThemeSwitcher position="top-right" />
             <div className="Heading2" ref={revealRefTop}>
             <h3>Welcome <span>{singleVoter.firstName}</span></h3>
             </div>

@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Typography, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Dialog, DialogTitle, DialogContent, DialogActions, TextField, MenuItem, Chip } from '@mui/material';
+import { Box, Typography, Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, IconButton, Dialog, DialogTitle, DialogContent, DialogActions, TextField, Chip, MenuItem } from '@mui/material';
 import { Delete as DeleteIcon, Edit as EditIcon, Check as CheckIcon, Close as CloseIcon, Download as DownloadIcon } from '@mui/icons-material';
 import axios from 'axios';
 import { BASE_URL } from '../../../../helper';
+import ThemeSwitcher from '../../../ThemeSwitcher/ThemeSwitcher';
 
 const ManageVoters = () => {
   const [voters, setVoters] = useState([]);
@@ -103,15 +104,18 @@ const ManageVoters = () => {
   }
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+    <Box sx={{ p: 3 }} className="fade-in">
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }} className="fade-in-down">
         <Typography variant="h4">Manage Voters</Typography>
-        <Button variant="contained" startIcon={<DownloadIcon />} onClick={handleExport}>
-          Export Voters
-        </Button>
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <ThemeSwitcher position="inline" />
+          <Button variant="contained" startIcon={<DownloadIcon />} onClick={handleExport}>
+            Export Voters
+          </Button>
+        </Box>
       </Box>
 
-      <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
+      <Box sx={{ display: 'flex', gap: 2, mb: 3 }} className="fade-in-up stagger-1">
         <TextField
           label="Search voters..."
           variant="outlined"
@@ -135,7 +139,7 @@ const ManageVoters = () => {
         </TextField>
       </Box>
 
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className="fade-in-up stagger-2">
         <Table>
           <TableHead>
             <TableRow>
@@ -150,7 +154,7 @@ const ManageVoters = () => {
           </TableHead>
           <TableBody>
             {filteredVoters.map((voter) => (
-              <TableRow key={voter._id}>
+              <TableRow key={voter._id} className="hover-lift">
                 <TableCell>{voter.fullName}</TableCell>
                 <TableCell>{voter.email}</TableCell>
                 <TableCell>{voter.matricNumber}</TableCell>

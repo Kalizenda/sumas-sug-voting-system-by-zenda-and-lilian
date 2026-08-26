@@ -17,6 +17,8 @@ import HowToVoteIcon from '@mui/icons-material/HowToVote';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import ThemeSwitcher from '../../../ThemeSwitcher/ThemeSwitcher';
+import { useTheme as useCustomTheme } from '../../../../context/ThemeContext';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
     const theme = useTheme();
@@ -38,6 +40,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 const Sidebar = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
+    const { currentTheme } = useCustomTheme();
     const [isCollapsed, setIsCollapsed] = useState(false);
     const [selected, setSelected] = useState("Dashboard");
     return (
@@ -90,10 +93,17 @@ const Sidebar = () => {
                                 alignItems="center"
                                 ml="1px"
                             >
-                                <Typography variant="h3" color={colors.grey[100]}>
-                                    SUG ADMIN
-                                </Typography>
-
+                                <Box display="flex" alignItems="center" gap="10px">
+                                    <img 
+                                        src="/school-logo.jpeg" 
+                                        alt="SUMAS Logo" 
+                                        style={{ height: '60px', width: 'auto' }}
+                                    />
+                                    <Typography variant="h3" color={colors.grey[100]} fontWeight="bold">
+                                        SUG ADMIN
+                                    </Typography>
+                                </Box>
+                                <ThemeSwitcher position="inline" />
                             </Box>
                         )}
                     </MenuItem>

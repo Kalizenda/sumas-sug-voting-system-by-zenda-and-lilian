@@ -1,46 +1,64 @@
-.FAQ{
-    /* border: 1px solid red; */
-    margin: 1.5rem auto;
-    padding: 0.5rem;
-    justify-content: center;
-    align-items: center;
+.FAQ {
+    margin: var(--spacing-8) auto;
+    padding: var(--spacing-4);
+    max-width: 1200px;
     text-align: center;
-    overflow: hidden;
-
 }
 
-.FAQ h2{
-    margin: 2rem auto;
-    color: #89c4ee;
-    justify-content: center;
-    align-items: center;
-    align-items: center;
+.FAQ h2 {
+    margin: var(--spacing-8) auto var(--spacing-6);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    background: linear-gradient(135deg, var(--color-primary-400), var(--color-secondary-400));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.FAQ .Questions {
+    padding: var(--spacing-4);
+    margin: var(--spacing-4) 0;
+}
+
+.FAQ .Questions .accordian {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100%;
+    max-width: 800px;
+    color: var(--color-text-inverse);
+    padding: var(--spacing-6);
+    margin: var(--spacing-4) auto;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+    cursor: pointer;
+}
+
+.FAQ .Questions .accordian:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.FAQ .Questions .accordian .heading {
+    color: var(--color-primary-300);
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-3);
+}
+
+.FAQ .Questions .accordian .answer {
+    color: var(--color-gray-200);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+}
+
+@media (max-width: 768px) {
+    .FAQ h2 {
+        font-size: var(--font-size-3xl);
+    }
     
-}
-.FAQ .Questions{
-    /* border: 1px solid green; */
-    padding: 1rem 2rem;
-    margin: 1rem;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-.FAQ .Questions .accordian{
-    /* border: 1px solid blue; */
-    background-color: whitesmoke;
-    width: 80%;
-    color:black;
-    padding: 1rem;
-    margin: 1.5rem auto;
-    border-radius: 1rem;
-}
-
-.FAQ .Questions .accordian .heading{
-    color: black;
-    font-weight: bold;
-}
-
-.FAQ .Questions .accordian .answer{
-    color: black;
+    .FAQ .Questions .accordian {
+        padding: var(--spacing-4);
+    }
 }

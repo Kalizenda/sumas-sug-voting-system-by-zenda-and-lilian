@@ -19,6 +19,8 @@ import Header from "../../newComponents/Header";
 import Topbar from "../global/Topbar";
 import Sidebar from "../global/Sidebar";
 import { tokens } from "../../theme";
+import ThemeSwitcher from '../../../ThemeSwitcher/ThemeSwitcher';
+import { useTheme as useCustomTheme } from '../../../../context/ThemeContext';
 
 const Calendar = () => {
     const formatDate = (date) => {
@@ -29,8 +31,25 @@ const Calendar = () => {
         }).format(date);
     };
 
+    const getCurrentDate = () => {
+        const today = new Date();
+        return today.toISOString().split('T')[0];
+    };
+
+    const getSpecificDate = (year, month, day) => {
+        const date = new Date(year, month - 1, day);
+        return date.toISOString().split('T')[0];
+    };
+
+    const getFutureDate = (days) => {
+        const date = new Date();
+        date.setDate(date.getDate() + days);
+        return date.toISOString().split('T')[0];
+    };
+
     const [theme, colorMode] = useMode();
     const colors = tokens(theme.palette.mode);
+    const { currentTheme } = useCustomTheme();
     const [currentEvents, setCurrentEvents] = useState([]);
 
     const handleDateClick = (selected) => {
@@ -70,7 +89,7 @@ const Calendar = () => {
     return (<ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <div className="appNew">
+            <div className="appNew fade-in">
                 <Sidebar />
                 <main className="content">
                     <Topbar />
@@ -82,24 +101,47 @@ const Calendar = () => {
                             <Box
                                 flex="1 1 20%"
                                 backgroundColor={colors.primary[400]}
-                                p="15px"
-                                borderRadius="4px"
+                                p="20px"
+                                borderRadius="16px"
+                                boxShadow="0 4px 20px rgba(0, 0, 0, 0.15)"
+                                className="fade-in-up stagger-1"
+                                sx={{
+                                    transition: 'all 0.3s ease',
+                                    '&:hover': {
+                                        transform: 'translateY(-4px)',
+                                        boxShadow: '0 8px 30px rgba(0, 0, 0, 0.25)'
+                                    }
+                                }}
                             >
-                                <Typography variant="h5">Events</Typography>
+                                <Typography variant="h5" fontWeight="600" color={colors.grey[100]} mb="15px">
+                                    Events
+                                </Typography>
                                 <List>
                                     {currentEvents.map((event) => (
                                         <ListItem
                                             key={event.id}
                                             sx={{
-                                                backgroundColor: colors.greenAccent[500],
+                                                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05))',
+                                                backdropFilter: 'blur(10px)',
+                                                border: '1px solid rgba(255, 255, 255, 0.2)',
                                                 margin: "10px 0",
-                                                borderRadius: "2px",
+                                                borderRadius: "12px",
+                                                transition: 'all 0.3s ease',
+                                                '&:hover': {
+                                                    background: 'linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 215, 0, 0.1))',
+                                                    transform: 'translateX(5px)'
+                                                }
                                             }}
+                                            className="hover-lift"
                                         >
                                             <ListItemText
-                                                primary={event.title}
+                                                primary={
+                                                    <Typography fontWeight="600" color={colors.greenAccent[500]}>
+                                                        {event.title}
+                                                    </Typography>
+                                                }
                                                 secondary={
-                                                    <Typography>
+                                                    <Typography color={colors.grey[200]}>
                                                         {formatDate(event.start, {
                                                             year: "numeric",
                                                             month: "short",
@@ -114,8 +156,39 @@ const Calendar = () => {
                             </Box>
 
                             {/* CALENDAR */}
-                            <Box flex="1 1 100%" ml="15px">
-                                <FullCalendar
+                            <Box 
+                                flex="1 1 100%" 
+                                ml="20px" 
+                                className="fade-in-up stagger-2"
+                                sx={{
+                                    background: currentTheme.background,
+                                    borderRadius: '16px',
+                                    boxShadow: '0 4px 20px rgba(0, 0, 0, 0.15)',
+                                    padding: '20px',
+                                    transition: 'all 0.5s ease',
+                                    '&:hover': {
+                                        transform: 'translateY(-4px)',
+                                        boxShadow: '0 8px 30px rgba(0, 0, 0, 0.25)'
+                                    }
+                                }}
+                            >
+                                <Box display="flex" justifyContent="space-between" alignItems="center" mb="15px">
+                                    <Typography variant="h6" fontWeight="600" color={colors.grey[100]}>
+                                        Calendar View
+                                    </Typography>
+                                    <ThemeSwitcher position="inline" />
+                                </Box>
+                                <Box
+                                    sx={{
+                                        background: 'rgba(255, 255, 255, 0.05)',
+                                        backdropFilter: 'blur(10px)',
+                                        borderRadius: '12px',
+                                        padding: '15px',
+                                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                                        transition: 'all 0.5s ease',
+                                    }}
+                                >
+                                    <FullCalendar
                                     height="75vh"
                                     plugins={[
                                         dayGridPlugin,
@@ -141,11 +214,27 @@ const Calendar = () => {
                                         {
                                             id: "5123",
                                             title: "Timed event",
-                                            date: "2022-09-28",
+                                            date: getSpecificDate(2026, 9, 28),
+                                        },
+                                        {
+                                            id: "5124",
+                                            title: "Voting Period Starts",
+                                            date: getSpecificDate(2026, 10, 5),
+                                        },
+                                        {
+                                            id: "5125",
+                                            title: "Candidate Registration Deadline",
+                                            date: getSpecificDate(2026, 10, 12),
+                                        },
+                                        {
+                                            id: "5126",
+                                            title: "Election Day",
+                                            date: getSpecificDate(2026, 10, 19),
                                         },
                                     ]}
                                     dayCellClassNames={() => 'custom-day-cell'}
                                 />
+                                </Box>
                             </Box>
                         </Box>
                     </Box>
@@ -163,6 +252,30 @@ const Calendar = () => {
                     .custom-day-cell .fc-daygrid-day-top {
                         color: white;
                         text-decoration: none;
+                    }
+                    .fc-theme-standard td, .fc-theme-standard th {
+                        border-color: rgba(255, 255, 255, 0.1);
+                    }
+                    .fc-daygrid-day-number {
+                        color: white;
+                    }
+                    .fc-col-header-cell-cushion {
+                        color: white;
+                    }
+                    .fc-toolbar-title {
+                        color: white;
+                    }
+                    .fc-button {
+                        background: rgba(255, 255, 255, 0.1);
+                        border: 1px solid rgba(255, 255, 255, 0.2);
+                        color: white;
+                    }
+                    .fc-button:hover {
+                        background: rgba(255, 255, 255, 0.2);
+                    }
+                    .fc-event {
+                        background: rgba(255, 215, 0, 0.8);
+                        border: none;
                     }
                     `}
             </style>

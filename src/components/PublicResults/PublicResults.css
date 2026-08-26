@@ -3,12 +3,61 @@
     background: linear-gradient(135deg, #1a237e 0%, #16213e 100%);
     color: #ffffff;
     padding: 2rem;
+    animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .results-header {
     text-align: center;
     margin-bottom: 2rem;
     position: relative;
+    animation: slideDown 0.6s ease-out;
+}
+
+.header-logo-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.school-logo {
+    height: 80px;
+    width: auto;
+    border-radius: 8px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.header-text {
+    text-align: left;
+}
+
+.header-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .results-header h1 {
@@ -73,11 +122,47 @@
     margin-top: 0.5rem;
 }
 
+.bg-switcher-btn {
+    display: block;
+    margin: 1rem auto 0;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #ff6f00 0%, #e65100 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 111, 0, 0.3);
+}
+
+.bg-switcher-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 111, 0, 0.4);
+}
+
+.bg-switcher-btn:active {
+    transform: translateY(0);
+}
+
 .results-stats {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
+    animation: slideUp 0.8s ease-out 0.2s both;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .stat-card {
@@ -114,6 +199,7 @@
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 2rem;
     margin-bottom: 2rem;
+    animation: slideUp 0.8s ease-out 0.4s both;
 }
 
 .chart-card {
@@ -132,10 +218,13 @@
 }
 
 .chart-wrapper {
-    height: 400px;
+    height: 500px;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 20px;
 }
 
 .no-data {
@@ -150,6 +239,7 @@
     border-radius: 15px;
     padding: 2rem;
     margin-top: 2rem;
+    animation: slideUp 0.8s ease-out 0.6s both;
 }
 
 .position-results h2 {
@@ -194,13 +284,14 @@
 }
 
 .candidate-result {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
+    display: flex !important;
+    align-items: center !important;
+    gap: 1.5rem !important;
+    padding: 1.5rem !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border-radius: 12px !important;
     position: relative;
+    min-height: 100px;
 }
 
 .candidate-rank {
@@ -212,9 +303,9 @@
 }
 
 .candidate-photo {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
+    width: 70px !important;
+    height: 70px !important;
+    border-radius: 8px !important;
     overflow: hidden;
     border: 2px solid #ff6f00;
 }
@@ -230,37 +321,43 @@
 }
 
 .candidate-info h4 {
-    margin: 0 0 0.25rem 0;
+    margin: 0 0 0.5rem 0;
     color: #ffffff;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
 .candidate-info .department {
-    margin: 0 0 0.25rem 0;
+    margin: 0 0 0.5rem 0;
     color: #e0e0e0;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
 }
 
 .candidate-info .slogan {
     margin: 0;
     color: #ff6f00;
     font-style: italic;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
 }
 
 .candidate-votes {
     text-align: right;
-    min-width: 80px;
+    min-width: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.25rem;
 }
 
 .vote-count {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
     color: #00ff00;
+    line-height: 1;
 }
 
 .vote-percentage {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: #e0e0e0;
 }
 

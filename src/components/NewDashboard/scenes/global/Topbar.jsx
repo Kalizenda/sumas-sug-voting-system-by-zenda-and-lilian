@@ -8,7 +8,8 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-import { useNavigate } from 'react-router-dom';// p is padding
+import { useNavigate } from 'react-router-dom';
+import ThemeSwitcher from '../../../ThemeSwitcher/ThemeSwitcher';
 
 const Topbar = () => {
     const navigate = useNavigate();
@@ -64,7 +65,8 @@ const Topbar = () => {
                     <SearchIcon />
                 </IconButton>
             </Box>
-            <Box display="flex" gap={1}>
+            <Box display="flex" gap={1} alignItems="center">
+                <ThemeSwitcher position="inline" />
                 <IconButton 
                     onClick={colorMode.toggleColorMode}
                     sx={{ 

@@ -18,7 +18,25 @@ function UserNavbar() {
   return (
     <Navbar expand="lg" className="Nav">
       <Container fluid>
-        <Navbar.Brand href="#" className='Heading'>Online Voting System</Navbar.Brand>
+        <Navbar.Brand href="#" className='Heading'>
+          <div 
+            style={{
+              width: '40px',
+              height: '40px',
+              marginRight: '12px',
+              display: 'inline-block',
+              verticalAlign: 'middle',
+              backgroundImage: 'url("/school-logo.jpeg")',
+              backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',
+              border: '2px solid rgba(255,255,255,0.3)',
+              borderRadius: '6px',
+              flexShrink: 0
+            }}
+          />
+          <span style={{ fontWeight: 'bold', fontSize: '1.1rem', color: '#ffffff', textShadow: '0 2px 4px rgba(0,0,0,0.3)' }}>Online Voting System</span>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav

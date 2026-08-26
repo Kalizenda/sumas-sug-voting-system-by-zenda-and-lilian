@@ -101,7 +101,7 @@ const Team = () => {
     return (<ColorModeContext.Provider value={colorMode}>
         <ThemeProvider theme={theme}>
             <CssBaseline />
-            <div className="appNew">
+            <div className="appNew fade-in">
                 <Sidebar />
                 <main className="content">
                     <Topbar />
@@ -111,6 +111,7 @@ const Team = () => {
                             m="20px 0 0 0"
                             height="70vh"
                             // width="160vh"
+                            className="fade-in-up"
                             sx={{
                                 "& .MuiDataGrid-root": {
                                     border: "none",

@@ -21,17 +21,7 @@ const BiometricCapture = ({ onCaptureComplete, mode = 'registration', storedFaci
     // Simple camera initialization
     startCamera();
     
-    // Force loading state to clear after 10 seconds if camera doesn't initialize
-    const loadingTimeout = setTimeout(() => {
-      if (isLoading) {
-        console.warn('Camera initialization timeout - forcing loading state clear');
-        setIsLoading(false);
-        setError('Camera initialization timed out. Please refresh the page or check your camera.');
-      }
-    }, 10000);
-
     return () => {
-      clearTimeout(loadingTimeout);
       stopCamera();
     };
   }, []);
@@ -88,7 +78,6 @@ const BiometricCapture = ({ onCaptureComplete, mode = 'registration', storedFaci
         }, 2000);
       } else {
         console.error('Video element not available');
-        setError('Video element not ready. Please refresh.');
         setIsLoading(false);
       }
     } catch (err) {
@@ -120,23 +109,27 @@ const BiometricCapture = ({ onCaptureComplete, mode = 'registration', storedFaci
       if (videoRef.current && canvasRef.current) {
         const canvas = canvasRef.current;
         const video = videoRef.current;
-        const ctx = canvas.getContext('2d');
         
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        ctx.drawImage(video, 0, 0);
-        
-        // Simulate face detection - in production use actual face-api.js
-        // For now, we'll use a simple heuristic
-        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-        const faceDetected = detectFace(imageData);
-        
-        setFaceDetected(faceDetected);
-        
-        if (faceDetected) {
-          setInstructions('Face detected! Click capture to register your biometric data.');
-        } else {
-          setInstructions('Position your face in the center of the frame');
+        // Check if video has valid dimensions
+        if (video.videoWidth > 0 && video.videoHeight > 0) {
+          const ctx = canvas.getContext('2d');
+          
+          canvas.width = video.videoWidth;
+          canvas.height = video.videoHeight;
+          ctx.drawImage(video, 0, 0);
+          
+          // Simulate face detection - in production use actual face-api.js
+          // For now, we'll use a simple heuristic
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const faceDetected = detectFace(imageData);
+          
+          setFaceDetected(faceDetected);
+          
+          if (faceDetected) {
+            setInstructions('Face detected! Click capture to register your biometric data.');
+          } else {
+            setInstructions('Position your face in the center of the frame');
+          }
         }
       }
     }, 100);

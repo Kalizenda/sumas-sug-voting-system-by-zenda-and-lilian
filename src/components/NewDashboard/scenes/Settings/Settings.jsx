@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Box, Typography, TextField, Button, Paper, Divider, Switch, FormControlLabel, Alert } from '@mui/material';
 import { Save as SaveIcon } from '@mui/icons-material';
+import ThemeSwitcher from '../../../ThemeSwitcher/ThemeSwitcher';
 
 const Settings = () => {
   const [settings, setSettings] = useState({
@@ -36,16 +37,19 @@ const Settings = () => {
   };
 
   return (
-    <Box sx={{ p: 3, maxWidth: 800, margin: '0 auto' }}>
-      <Typography variant="h4" gutterBottom>System Settings</Typography>
+    <Box sx={{ p: 3, maxWidth: 800, margin: '0 auto' }} className="fade-in">
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }} className="fade-in-down">
+        <Typography variant="h4">System Settings</Typography>
+        <ThemeSwitcher position="inline" />
+      </Box>
       
       {saveStatus === 'success' && (
-        <Alert severity="success" sx={{ mb: 2 }}>
+        <Alert severity="success" sx={{ mb: 2 }} className="fade-in-up">
           Settings saved successfully!
         </Alert>
       )}
 
-      <Paper sx={{ p: 3, mb: 3 }}>
+      <Paper sx={{ p: 3, mb: 3 }} className="fade-in-up stagger-1 hover-lift">
         <Typography variant="h6" gutterBottom>University Information</Typography>
         <Divider sx={{ mb: 2 }} />
         
@@ -77,7 +81,7 @@ const Settings = () => {
         />
       </Paper>
 
-      <Paper sx={{ p: 3, mb: 3 }}>
+      <Paper sx={{ p: 3, mb: 3 }} className="fade-in-up stagger-2 hover-lift">
         <Typography variant="h6" gutterBottom>Election Settings</Typography>
         <Divider sx={{ mb: 2 }} />
         
@@ -104,7 +108,7 @@ const Settings = () => {
         />
       </Paper>
 
-      <Paper sx={{ p: 3, mb: 3 }}>
+      <Paper sx={{ p: 3, mb: 3 }} className="fade-in-up stagger-3 hover-lift">
         <Typography variant="h6" gutterBottom>Biometric Settings</Typography>
         <Divider sx={{ mb: 2 }} />
         
@@ -133,7 +137,7 @@ const Settings = () => {
         />
       </Paper>
 
-      <Paper sx={{ p: 3, mb: 3 }}>
+      <Paper sx={{ p: 3, mb: 3 }} className="fade-in-up stagger-4 hover-lift">
         <Typography variant="h6" gutterBottom>Security Settings</Typography>
         <Divider sx={{ mb: 2 }} />
         
@@ -160,7 +164,7 @@ const Settings = () => {
         />
       </Paper>
 
-      <Paper sx={{ p: 3, mb: 3 }}>
+      <Paper sx={{ p: 3, mb: 3 }} className="fade-in-up stagger-5 hover-lift">
         <Typography variant="h6" gutterBottom>Registration Settings</Typography>
         <Divider sx={{ mb: 2 }} />
         
@@ -187,7 +191,7 @@ const Settings = () => {
         />
       </Paper>
 
-      <Paper sx={{ p: 3, mb: 3 }}>
+      <Paper sx={{ p: 3, mb: 3 }} className="fade-in-up stagger-6 hover-lift">
         <Typography variant="h6" gutterBottom>Admin Settings</Typography>
         <Divider sx={{ mb: 2 }} />
         
@@ -202,12 +206,13 @@ const Settings = () => {
         />
       </Paper>
 
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }} className="fade-in-up">
         <Button
           variant="contained"
           startIcon={<SaveIcon />}
           onClick={handleSave}
           size="large"
+          className="hover-scale"
         >
           Save Settings
         </Button>

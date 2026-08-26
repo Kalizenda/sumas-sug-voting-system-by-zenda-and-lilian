@@ -72,7 +72,8 @@ const voterSchema = new mongoose.Schema({
     type: String
   },
   age: {
-    type: Number
+    type: Number,
+    required: false // Make optional
   },
   city: {
     type: String
@@ -84,10 +85,21 @@ const voterSchema = new mongoose.Schema({
     type: Date
   },
   voterid: {
-    type: Number
+    type: Number,
+    required: false // Make optional to avoid validation errors
   },
   phone: {
-    type: Number
+    type: Number,
+    required: false, // Make optional to avoid validation errors
+    validate: {
+      validator: function(v) {
+        // If value is null, undefined, or NaN, it's valid (optional field)
+        if (v === null || v === undefined || isNaN(v)) return true;
+        // Otherwise, must be a positive number
+        return v > 0;
+      },
+      message: 'Phone number must be a valid positive number'
+    }
   },
   image: {
     type: String

@@ -3,6 +3,7 @@ import { Box, Typography, Button, Table, TableBody, TableCell, TableContainer, T
 import { Delete as DeleteIcon, Edit as EditIcon, PlayArrow as PlayIcon, Stop as StopIcon, Add as AddIcon } from '@mui/icons-material';
 import axios from 'axios';
 import { BASE_URL } from '../../../../helper';
+import ThemeSwitcher from '../../../ThemeSwitcher/ThemeSwitcher';
 
 const ManageElections = () => {
   const [elections, setElections] = useState([]);
@@ -111,15 +112,18 @@ const ManageElections = () => {
   }
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+    <Box sx={{ p: 3 }} className="fade-in">
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }} className="fade-in-down">
         <Typography variant="h4">Manage Elections</Typography>
-        <Button variant="contained" startIcon={<AddIcon />} onClick={handleCreate}>
-          Create Election
-        </Button>
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          <ThemeSwitcher position="inline" />
+          <Button variant="contained" startIcon={<AddIcon />} onClick={handleCreate}>
+            Create Election
+          </Button>
+        </Box>
       </Box>
 
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className="fade-in-up">
         <Table>
           <TableHead>
             <TableRow>
@@ -133,7 +137,7 @@ const ManageElections = () => {
           </TableHead>
           <TableBody>
             {elections.map((election) => (
-              <TableRow key={election._id}>
+              <TableRow key={election._id} className="hover-lift">
                 <TableCell>{election.title}</TableCell>
                 <TableCell>{election.description}</TableCell>
                 <TableCell>

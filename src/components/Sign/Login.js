@@ -12,9 +12,12 @@ import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from "../../helper";
 import BiometricCapture from "../BiometricCapture/BiometricCapture";
 import Cookies from 'js-cookie';
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
+import { useTheme } from "../../context/ThemeContext";
 
 const Login = () => {
     const navigate = useNavigate();
+    const { currentTheme } = useTheme();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -92,8 +95,9 @@ const Login = () => {
     }
 
     return (
-        <div >
+        <div style={{ background: currentTheme.background, minHeight: '100vh', transition: 'background 0.5s ease' }}>
             <Nav_bar />
+            <ThemeSwitcher position="top-right" />
             <section className="sign-in">
                 <div className="container">
                 <p>Use your student email or matriculation number to login</p>

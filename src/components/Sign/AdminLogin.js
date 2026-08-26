@@ -9,10 +9,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { BASE_URL } from "../../helper";
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
+import { useTheme } from "../../context/ThemeContext";
 
 
 const AdminLogin = () => {
     const navigate = useNavigate();
+    const { currentTheme } = useTheme();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -51,8 +54,9 @@ const AdminLogin = () => {
     };
 
     return (
-        <div >
+        <div style={{ background: currentTheme.background, minHeight: '100vh', transition: 'background 0.5s ease' }}>
             <Nav_bar />
+            <ThemeSwitcher position="top-right" />
             <section className="sign-in">
                 <div className="container">
                     <div className="signin-content">

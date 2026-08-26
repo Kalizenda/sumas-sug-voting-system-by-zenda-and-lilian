@@ -20,168 +20,169 @@
 
 .vote-header {
     text-align: center;
-    padding: 3rem 2rem;
+    padding: var(--spacing-12) var(--spacing-8);
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
     z-index: 1;
 }
 
 .vote-header h1 {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-    color: #ffd700;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    font-weight: 800;
+    font-size: var(--font-size-5xl);
+    margin-bottom: var(--spacing-3);
+    background: linear-gradient(135deg, var(--color-primary-400), var(--color-secondary-400));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: var(--font-weight-bold);
 }
 
 .vote-header p {
-    font-size: 1.3rem;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--font-size-xl);
+    color: var(--color-gray-200);
 }
 
 .voting-section {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 3rem 2rem;
+    padding: var(--spacing-12) var(--spacing-8);
     position: relative;
     z-index: 1;
 }
 
 .position-section {
-    margin-bottom: 4rem;
-    padding: 3rem;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
-    border: 2px solid rgba(255, 255, 255, 0.15);
+    margin-bottom: var(--spacing-12);
+    padding: var(--spacing-8);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-2xl);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(15px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow-xl);
 }
 
 .position-title {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    color: #ffd700;
+    font-size: var(--font-size-4xl);
+    margin-bottom: var(--spacing-4);
+    background: linear-gradient(135deg, var(--color-primary-400), var(--color-secondary-400));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-align: center;
-    font-weight: 700;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    font-weight: var(--font-weight-bold);
 }
 
 .position-description {
     text-align: center;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 2.5rem;
-    font-size: 1.2rem;
-    font-weight: 500;
+    color: var(--color-gray-200);
+    margin-bottom: var(--spacing-8);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-medium);
 }
 
 .candidates-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
+    gap: var(--spacing-8);
 }
 
 .candidate-card {
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: var(--radius-xl) !important;
+    transition: all var(--transition-normal);
     height: 100%;
     display: flex;
     flex-direction: column;
     backdrop-filter: blur(10px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: var(--shadow-md);
 }
 
 .candidate-card:hover {
-    transform: translateY(-12px) scale(1.03);
-    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
-    border-color: #ffd700;
-    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--color-primary-500) !important;
 }
 
 .candidate-photo {
     width: 100%;
-    height: 220px;
+    height: 400px !important;
     object-fit: cover;
     border-bottom: 3px solid rgba(255, 215, 0, 0.4);
-    border-radius: 18px 18px 0 0;
+    border-radius: 0 !important;
 }
 
 .candidate-name {
-    font-weight: 700;
-    color: #ffffff;
-    margin-bottom: 0.75rem;
-    font-size: 1.3rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-text-inverse);
+    margin-bottom: var(--spacing-3);
+    font-size: var(--font-size-xl);
 }
 
 .candidate-department {
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 1.2rem;
-    font-size: 1rem;
-    font-weight: 500;
+    color: var(--color-gray-200);
+    margin-bottom: var(--spacing-4);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
 }
 
 .position-chip {
-    background: linear-gradient(135deg, #ffd700, #ffed4e);
-    color: #1a5f2a;
-    margin-bottom: 1.2rem;
-    font-weight: 700;
-    box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+    background: linear-gradient(135deg, var(--color-primary-400), var(--color-primary-500));
+    color: var(--color-text-inverse);
+    margin-bottom: var(--spacing-4);
+    font-weight: var(--font-weight-semibold);
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-2) var(--spacing-4);
+    border-radius: var(--radius-full);
+    display: inline-block;
 }
 
 .candidate-manifesto {
-    color: rgba(255, 255, 255, 0.95);
-    line-height: 1.6;
-    font-size: 1rem;
+    color: var(--color-gray-200);
+    line-height: var(--line-height-relaxed);
+    font-size: var(--font-size-base);
     flex-grow: 1;
-    margin-bottom: 1rem;
+    margin-bottom: var(--spacing-4);
 }
 
 .campaign-slogan {
-    color: #ffd700;
+    color: var(--color-primary-300);
     font-style: italic;
-    margin-top: 1.2rem;
-    font-size: 0.95rem;
-    font-weight: 600;
+    margin-top: var(--spacing-4);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
 }
 
 .vote-button {
-    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
-    color: #1a5f2a;
-    font-weight: 700;
-    padding: 1rem;
-    border-radius: 12px;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    font-size: 1.1rem;
-    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
-    border: none;
+    background: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-600));
+    color: var(--color-text-inverse);
+    font-weight: var(--font-weight-semibold);
+    padding: var(--spacing-4);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-base);
+    font-size: var(--font-size-lg);
+    box-shadow: var(--shadow-md);
 }
 
-.vote-button:hover:not(:disabled) {
-    background: linear-gradient(135deg, #1a5f2a 0%, #008751 100%);
-    color: white;
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 30px rgba(26, 95, 42, 0.4);
+.vote-button:hover {
+    background: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-700));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
 }
 
 .vote-button:disabled {
-    background: rgba(255, 255, 255, 0.1);
-    color: rgba(255, 255, 255, 0.3);
+    background: rgba(14, 165, 233, 0.3);
     cursor: not-allowed;
     transform: none;
-    box-shadow: none;
 }
 
 .no-candidates {
     text-align: center;
-    padding: 4rem;
-    color: rgba(255, 255, 255, 0.9);
-    font-size: 1.3rem;
+    padding: var(--spacing-12);
+    color: var(--color-gray-200);
+    font-size: var(--font-size-xl);
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
+    border-radius: var(--radius-xl);
     backdrop-filter: blur(10px);
 }
 
@@ -191,7 +192,7 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    color: #ffffff;
+    color: var(--color-text-inverse);
     position: relative;
     z-index: 1;
 }
@@ -200,11 +201,11 @@
     width: 60px;
     height: 60px;
     border: 4px solid rgba(255, 255, 255, 0.1);
-    border-top-color: #ffd700;
+    border-top-color: var(--color-primary-500);
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+    margin-bottom: var(--spacing-6);
+    box-shadow: var(--shadow-md);
 }
 
 @keyframes spin {

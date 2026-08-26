@@ -119,8 +119,12 @@ router.post('/createVoter', upload.single('image'), async (req, res) => {
           cleanVoterData.lastName = nameParts.slice(1).join(' ') || '';
           cleanVoterData.fullName = voterData[key];
         } else if (key === 'phoneNumber') {
-          cleanVoterData.phone = Number(voterData[key]);
-          cleanVoterData.phoneNumber = voterData[key];
+          const phoneNum = Number(voterData[key]);
+          // Only set phone if it's a valid number
+          if (!isNaN(phoneNum) && voterData[key] !== '') {
+            cleanVoterData.phone = phoneNum;
+            cleanVoterData.phoneNumber = voterData[key];
+          }
         } else {
           cleanVoterData[key] = voterData[key];
         }
@@ -147,6 +151,8 @@ router.post('/createVoter', upload.single('image'), async (req, res) => {
       cleanVoterData.userId = new mongoose.Types.ObjectId();
     }
 
+    console.log('Attempting to create voter with data:', JSON.stringify(cleanVoterData, null, 2));
+    
     const newVoter = new Voter(cleanVoterData);
     console.log('Saving voter with data:', {
       email: cleanVoterData.email,
@@ -162,12 +168,17 @@ router.post('/createVoter', upload.single('image'), async (req, res) => {
     res.json({ success: true, voter: newVoter });
   } catch (error) {
     console.error('Create voter error:', error);
+    console.error('Error name:', error.name);
+    console.error('Error message:', error.message);
+    console.error('Error details:', JSON.stringify(error.errors, null, 2));
+    
     if (error.code === 11000) {
       res.json({ success: false, message: 'Email or Matric Number already exists' });
     } else if (error.name === 'ValidationError') {
-      res.json({ success: false, message: 'Validation error: ' + error.message });
+      const errorMessages = Object.values(error.errors).map(err => err.message);
+      res.json({ success: false, message: 'Validation error: ' + errorMessages.join(', ') });
     } else {
-      res.status(500).json({ success: false, message: 'Server error' });
+      res.status(500).json({ success: false, message: 'Server error: ' + error.message });
     }
   }
 });

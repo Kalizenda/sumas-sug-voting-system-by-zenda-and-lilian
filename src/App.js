@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter,Route,Routes} from 'react-router-dom';
 import './App.css';
+import './styles/animations.css';
 import Home from './components/Home/Home';
 import AdminLogin from './components/Sign/AdminLogin';
 import Login from './components/Sign/Login';
@@ -23,6 +24,7 @@ import ManageElections from './components/NewDashboard/scenes/ManageElections/Ma
 import ManagePositions from './components/NewDashboard/scenes/ManagePositions/ManagePositions';
 import AuditLogs from './components/NewDashboard/scenes/AuditLogs/AuditLogs';
 import Settings from './components/NewDashboard/scenes/Settings/Settings';
+import { useTheme } from './context/ThemeContext';
 
 const Routing = ()=>{
 
@@ -55,10 +57,18 @@ const Routing = ()=>{
 }
 
 function App() {
+  const { currentTheme } = useTheme();
+  
   return (
-    <BrowserRouter>
-      <Routing />      
-    </BrowserRouter>
+    <div style={{ 
+      background: currentTheme.background,
+      minHeight: '100vh',
+      transition: 'background 0.5s ease'
+    }}>
+      <BrowserRouter>
+        <Routing />      
+      </BrowserRouter>
+    </div>
   );
 }
 

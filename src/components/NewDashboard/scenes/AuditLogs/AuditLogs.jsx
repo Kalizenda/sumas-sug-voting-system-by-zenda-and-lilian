@@ -3,6 +3,7 @@ import { Box, Typography, Button, Table, TableBody, TableCell, TableContainer, T
 import { Download as DownloadIcon, Refresh as RefreshIcon } from '@mui/icons-material';
 import axios from 'axios';
 import { BASE_URL } from '../../../../helper';
+import ThemeSwitcher from '../../../ThemeSwitcher/ThemeSwitcher';
 
 const AuditLogs = () => {
   const [logs, setLogs] = useState([]);
@@ -85,10 +86,11 @@ const AuditLogs = () => {
   }
 
   return (
-    <Box sx={{ p: 3 }}>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+    <Box sx={{ p: 3 }} className="fade-in">
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }} className="fade-in-down">
         <Typography variant="h4">Audit Logs</Typography>
         <Box sx={{ display: 'flex', gap: 2 }}>
+          <ThemeSwitcher position="inline" />
           <Button variant="outlined" startIcon={<RefreshIcon />} onClick={fetchLogs}>
             Refresh
           </Button>
@@ -99,27 +101,27 @@ const AuditLogs = () => {
       </Box>
 
       {statistics && (
-        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 2, mb: 3 }}>
-          <Paper sx={{ p: 2, textAlign: 'center' }}>
+        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 2, mb: 3 }} className="fade-in-up stagger-1">
+          <Paper sx={{ p: 2, textAlign: 'center' }} className="hover-lift">
             <Typography variant="h6" color="primary">{statistics.totalLogs}</Typography>
             <Typography variant="body2">Total Logs</Typography>
           </Paper>
-          <Paper sx={{ p: 2, textAlign: 'center' }}>
+          <Paper sx={{ p: 2, textAlign: 'center' }} className="hover-lift">
             <Typography variant="h6" color="success">{statistics.successLogs}</Typography>
             <Typography variant="body2">Successful</Typography>
           </Paper>
-          <Paper sx={{ p: 2, textAlign: 'center' }}>
+          <Paper sx={{ p: 2, textAlign: 'center' }} className="hover-lift">
             <Typography variant="h6" color="error">{statistics.failureLogs}</Typography>
             <Typography variant="body2">Failed</Typography>
           </Paper>
-          <Paper sx={{ p: 2, textAlign: 'center' }}>
+          <Paper sx={{ p: 2, textAlign: 'center' }} className="hover-lift">
             <Typography variant="h6" color="primary">{statistics.successRate}%</Typography>
             <Typography variant="body2">Success Rate</Typography>
           </Paper>
         </Box>
       )}
 
-      <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
+      <Box sx={{ display: 'flex', gap: 2, mb: 3 }} className="fade-in-up stagger-2">
         <TextField
           select
           label="Filter by Action"
@@ -164,7 +166,7 @@ const AuditLogs = () => {
         </TextField>
       </Box>
 
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className="fade-in-up stagger-3">
         <Table>
           <TableHead>
             <TableRow>
@@ -178,9 +180,9 @@ const AuditLogs = () => {
           </TableHead>
           <TableBody>
             {logs.map((log) => (
-              <TableRow key={log._id}>
+              <TableRow key={log._id} className="hover-lift">
                 <TableCell>{new Date(log.timestamp).toLocaleString()}</TableCell>
-                <TableCell>{log.userId?.fullName || 'System'}</TableCell>
+                <TableCell>{log.userName || log.userId?.fullName || 'System'}</TableCell>
                 <TableCell>
                   <Chip 
                     label={log.action.replace(/_/g, ' ').toUpperCase()}
@@ -197,7 +199,7 @@ const AuditLogs = () => {
                 </TableCell>
                 <TableCell>
                   {typeof log.details === 'object' 
-                    ? JSON.stringify(log.details).substring(0, 50) + '...'
+                    ? (log.details?.message || JSON.stringify(log.details).substring(0, 50) + '...')
                     : String(log.details).substring(0, 50)}
                 </TableCell>
                 <TableCell>{log.ipAddress || 'N/A'}</TableCell>
